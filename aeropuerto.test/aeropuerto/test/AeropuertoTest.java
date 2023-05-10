@@ -6,10 +6,7 @@ import org.junit.Test;
 
 public class AeropuertoTest {
 
-	@Test
-	public void queSeCreeUnVueloYSeAgregueUnPasajero() {
-		
-		
-	}
+	
+	
 
 }
