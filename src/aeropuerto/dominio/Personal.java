@@ -2,6 +2,8 @@ package aeropuerto.dominio;
 
 import java.util.Objects;
 
+import unlam.edu.ar.dominio.Personal;
+
 public class Personal{
 	
 	private Integer legajo;
@@ -61,6 +63,18 @@ public class Personal{
 	@Override
 	public int hashCode() {
 		return Objects.hash(legajo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Personal other = (Personal) obj;
+		return Objects.equals(legajo, other.legajo);
 	}
 
 	
