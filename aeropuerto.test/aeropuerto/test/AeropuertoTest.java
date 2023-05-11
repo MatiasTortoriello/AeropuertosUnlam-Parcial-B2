@@ -181,7 +181,9 @@ public class AeropuertoTest{
 		Pasajero pasajero3 = new Pasajero(03, "+1234562", 10.0, Cabina.CABINA_PASAJEROS);
 		Pasajero pasajero4 = new Pasajero(04, "+1234565", 10.0, Cabina.CABINA_PASAJEROS);
 
-		//Avion avion = new Avion(001, );
+		Hangar hangar = new Hangar(01, "Hangar", 1);
+		Avion avion = new Avion(001, 10, "747", "Boeing", null, 120.0, TipoAvion.COMERCIAL);
+		
 	}
 	
 	
