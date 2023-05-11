@@ -65,6 +65,20 @@ public class Pasajero {
 		return Objects.equals(pasaporte, other.pasaporte);
 	}
 
+	public boolean validarPasaporte() {
+		if(this.pasaporte.toString().length() == 6) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean validarTelefono() {
+		if(this.telefono.contains("+") && this.telefono.length() == 13) {
+			return true;
+		}
+		return false;
+	}
+
 	
 	
 }

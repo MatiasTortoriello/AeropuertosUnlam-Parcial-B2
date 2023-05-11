@@ -2,8 +2,6 @@ package aeropuerto.dominio;
 
 import java.util.Objects;
 
-import unlam.edu.ar.dominio.Personal;
-
 public class Personal{
 	
 	private Integer legajo;

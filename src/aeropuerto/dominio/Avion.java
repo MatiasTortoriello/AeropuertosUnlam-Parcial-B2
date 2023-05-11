@@ -2,8 +2,6 @@ package aeropuerto.dominio;
 
 import java.util.HashSet;
 
-import unlam.edu.ar.dominio.TipoAvion;
-
 public class Avion {
 	
 	private Integer codigoAvion;
