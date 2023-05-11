@@ -139,7 +139,7 @@ public class AeropuertoTest{
 	
 	@Test
 	public void queSiUnPilotoOUnPersonalEstanEnElLaCabinaDePasajerosQueLoCambieALaCabinaDeVuelo() {
-		//Piloto de Cabina_Pasajeros a Cabina_Vuelo
+		//Piloto
 		
 		Integer legajo = 0001;
 		String nombre= "Pilotencio";
@@ -148,16 +148,7 @@ public class AeropuertoTest{
 		Double peso = 50.0;
 		Integer cantidadDeHoras = 24;
 		
-		Piloto piloto = new Piloto(legajo, nombre, apellido, cabina, peso, cantidadDeHoras);
-		
-		assertEquals(piloto.getCabina(), Cabina.CABINA_PASAJEROS);
-		
-		piloto.validarCabina();
-		
-		assertEquals(piloto.getCabina(), Cabina.CABINA_VUELO);
-		
-		//Tcp de Cabina_Vuelo a Cabina_Pasajeros
-		
+		//Azafata
 		Integer legajo2 = 0002;
 		String nombre2= "Azafatencia";
 		String apellido2 = "Servil";
@@ -165,17 +156,33 @@ public class AeropuertoTest{
 		Double peso2 = 30.0;
 		TipoTripulante tipoTripulante = TipoTripulante.AZAFATA;
 		
-		
+		Piloto piloto = new Piloto(legajo, nombre, apellido, cabina, peso, cantidadDeHoras);
 		Tcp tcp = new Tcp(legajo2, nombre2, apellido2, cabina2, peso2, tipoTripulante);
 		
+		assertEquals(piloto.getCabina(), Cabina.CABINA_PASAJEROS);
 		assertEquals(tcp.getCabina(), Cabina.CABINA_VUELO);
 		
+		piloto.validarCabina();
 		tcp.validarCabina();
 		
+		assertEquals(piloto.getCabina(), Cabina.CABINA_VUELO);
 		assertEquals(tcp.getCabina(), Cabina.CABINA_PASAJEROS);
 		
-		
-		
-		
 	}
+	
+	@Test
+	public void queElPesoDeLasPersonasNoSupereAlPesoPermitido() {
+		
+		
+		Piloto piloto = new Piloto(01, "Pilotin", "Volador", Cabina.CABINA_VUELO, 40.0, 30);
+		Tcp tcp = new Tcp(02, "Comisario", "AmigoDeLaYuta", Cabina.CABINA_PASAJEROS, 30.0, TipoTripulante.COMISARIO_DE_ABORDO);
+		Pasajero pasajero1 = new Pasajero(01, "+123456", 10.0, Cabina.CABINA_PASAJEROS);
+		Pasajero pasajero2 = new Pasajero(02, "+1234563", 10.0, Cabina.CABINA_PASAJEROS);
+		Pasajero pasajero3 = new Pasajero(03, "+1234562", 10.0, Cabina.CABINA_PASAJEROS);
+		Pasajero pasajero4 = new Pasajero(04, "+1234565", 10.0, Cabina.CABINA_PASAJEROS);
+
+		//Avion avion = new Avion(001, );
+	}
+	
+	
 }

@@ -1,6 +1,10 @@
 package aeropuerto.dominio;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
+
+
 
 public class Avion {
 	
@@ -114,7 +118,96 @@ public class Avion {
 		
 	}
 	
+	public Boolean hayCapacidad() {
+		if(this.getListaDePasajeros().size() <= this.capacidad) {
+			return true;
+		}
+		return false;
+	}
 	
+
+	public void eliminarPasajeroSiNoHayCapacidad(Pasajero pasajero) {
+		if(!hayCapacidad()) {
+			listaDePasajeros.remove(pasajero);
+		}	
+	}
 	
+	public Boolean validarPiloto(Piloto piloto) {
+		if(this.tipoAvion.equals(TipoAvion.MILITAR) && piloto.getCantidadHoras() > 20) {
+			piloto.setTipoAvion(TipoAvion.MILITAR);
+			return true;
+		}
+		
+		if(this.tipoAvion.equals(TipoAvion.COMERCIAL)){
+			piloto.setTipoAvion(TipoAvion.COMERCIAL);
+			return true;
+		}
+		return false;
+	}
+	
+	public Double calcularPesoTotal() {
+		Double pesoTotalPersonal = 0.0;
+		Double pesoTotalPasajero = 0.0;
+		
+		for (Pasajero pasajero : listaDePasajeros) {
+			pesoTotalPasajero += pasajero.getPeso();
+		}
+		for (Personal personal : listaDePersonal) {
+			pesoTotalPersonal += personal.getPeso();
+		}
+		
+		return pesoTotalPasajero + pesoTotalPersonal;
+	}
+	
+	public Boolean validarPesoVuelo() {
+		Double pesoTotalPersonas = calcularPesoTotal();
+		if(pesoTotalPersonas <= this.pesoMaximo) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(codigoAvion);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Avion other = (Avion) obj;
+		return Objects.equals(codigoAvion, other.codigoAvion);
+	}
+	
+	public Pasajero buscarPasajero(Integer pasaporte) {
+		for (Pasajero pasajero : listaDePasajeros) {
+			if(pasajero.getPasaporte() == pasaporte) {
+				return pasajero;
+			}
+		}
+		return null;
+	}
+
+	public ArrayList<Vuelo> buscarVueloPorCodigoDeRuta(Integer codRuta) {
+		ArrayList<Vuelo> listaDeVuelosConLaMismaRuta = new ArrayList<Vuelo>();
+		for (Vuelo vuelo : listaDeVuelo) {
+			if(vuelo.getRutaDeVuelo().getCodRuta() == codRuta) {
+				listaDeVuelosConLaMismaRuta.add(vuelo);
+			}
+		}
+		return listaDeVuelosConLaMismaRuta;
+	}
+
+	public void eliminarPersonalSiSeSuperaElPeso(Personal personal) {
+		if(!validarPesoVuelo()) {
+			listaDePersonal.remove(personal);
+		}
+		
+	}
 
 }
