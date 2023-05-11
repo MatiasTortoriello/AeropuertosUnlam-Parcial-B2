@@ -26,7 +26,7 @@ public class AeropuertoTest{
 		
 		Integer pasaporte = 123123;
 		String numeroPasajero = "+541134236477";
-		Pasajero pasajero = new Pasajero(pasaporte,numeroPasajero,40.0,Cabina.CABINA_PASAJEROS);
+		Pasajero pasajero = new Pasajero(pasaporte,numeroPasajero,40.0,Cabina.CABINA_PASAJERO);
 		
 		avion.agregarPasajero(pasajero);
 		assertEquals(avion.getListaDePasajeros().size(), 1);
