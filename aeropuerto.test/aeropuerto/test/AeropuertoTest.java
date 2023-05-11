@@ -2,16 +2,22 @@ package aeropuerto.test;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import org.junit.Test;
 
+import aeropuerto.dominio.Vuelo;
 import aeropuerto.dominio.Avion;
 import aeropuerto.dominio.Cabina;
+import aeropuerto.dominio.Ciudad;
 import aeropuerto.dominio.Hangar;
 import aeropuerto.dominio.Pasajero;
+import aeropuerto.dominio.Ruta;
 import aeropuerto.dominio.TipoAvion;
+import aeropuerto.dominio.TipoDeVuelo;
 
 public class AeropuertoTest{
-
 
 	@Test
 	public void queSeCreeUnAvionYSeAgregueUnPasajero() {
@@ -33,6 +39,7 @@ public class AeropuertoTest{
 	}
 	
 	@Test
+
 	public void queElPasajeroTengaTelefonoYPasaporteValido() {
 		Integer pasaporte = 123123;
 		String numeroPasajero = "+541134236477";
@@ -50,6 +57,37 @@ public class AeropuertoTest{
 		
 		assertFalse(pasajero.validarPasaporte());
 		assertFalse(pasajero.validarTelefono());
+	}
+	
+	public void queSiUnVueloTieneDistintosPaisesSeLeAsigneVueloInternacional() {
+		Integer nroVuelo = 001;
+		LocalTime hora = LocalTime.of(23, 50);
+		Ciudad ciudadInicio = new Ciudad(01, "Lima", "Peru");
+		Ciudad ciudadDestino = new Ciudad(02, "Buenos Aires", "Argentina");
+		LocalDate fecha = LocalDate.of(2024, 5, 10);
+		
+		Ruta ruta = new Ruta(3,ciudadInicio, ciudadDestino);
+		Vuelo vuelo = new Vuelo(nroVuelo,ruta,hora,fecha);
+		
+		vuelo.validarTipoDeVuelo();
+		
+		assertEquals(vuelo.getTipoDeVuelo(), TipoDeVuelo.INTERNACIONAL);
+	}
+	
+	@Test
+	public void queSiUnVueloTieneLosMismosPaisesSeLeAsigneVueloCabotaje() {
+		Integer nroVuelo = 001;
+		LocalTime hora = LocalTime.of(23, 50);
+		Ciudad ciudadInicio = new Ciudad(01, "Cordoba", "Argentina");
+		Ciudad ciudadDestino = new Ciudad(02, "Buenos Aires", "Argentina");
+		LocalDate fecha = LocalDate.of(2024, 5, 10);
+		
+		Ruta ruta = new Ruta(3,ciudadInicio, ciudadDestino);
+		Vuelo vuelo = new Vuelo(nroVuelo,ruta,hora,fecha);
+		
+		vuelo.validarTipoDeVuelo();
+		
+		assertEquals(vuelo.getTipoDeVuelo(), TipoDeVuelo.CABOTAJE);
 	}
 
 	

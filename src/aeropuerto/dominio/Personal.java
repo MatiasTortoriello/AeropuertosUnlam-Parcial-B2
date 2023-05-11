@@ -75,6 +75,13 @@ public class Personal{
 		return Objects.equals(legajo, other.legajo);
 	}
 
+	public Boolean validarCabina() {
+		if(getCabina() != Cabina.CABINA_VUELO) {
+			setCabina(Cabina.CABINA_VUELO);
+			return true;
+		}
+		return false;
+	}
 	
 	
 }
