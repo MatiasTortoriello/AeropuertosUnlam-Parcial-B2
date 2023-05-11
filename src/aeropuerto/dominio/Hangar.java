@@ -12,4 +12,29 @@ public class Hangar {
 		this.capacidad = capacidad;
 	}
 
+	public Integer getCodHangar() {
+		return codHangar;
+	}
+
+	public void setCodHangar(Integer codHangar) {
+		this.codHangar = codHangar;
+	}
+
+	public String getNombreHangar() {
+		return nombreHangar;
+	}
+
+	public void setNombreHangar(String nombreHangar) {
+		this.nombreHangar = nombreHangar;
+	}
+
+	public Integer getCapacidad() {
+		return capacidad;
+	}
+
+	public void setCapacidad(Integer capacidad) {
+		this.capacidad = capacidad;
+	}
+
+	
 }
