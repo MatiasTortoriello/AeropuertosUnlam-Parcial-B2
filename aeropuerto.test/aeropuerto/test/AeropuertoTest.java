@@ -231,7 +231,7 @@ public class AeropuertoTest{
 		Pasajero pasajero4 = new Pasajero(04, "+1234565", 10.0, Cabina.CABINA_PASAJEROS);
 
 		Hangar hangar = new Hangar(01, "Hangar", 1);
-		Avion avion = new Avion(001, 10, "747", "Boeing", null, 120.0, TipoAvion.COMERCIAL);
+		Avion avion = new Avion(001, 10, "747", "Boeing", hangar, 120.0, TipoAvion.COMERCIAL);
 		
 		avion.agregarPasajero(pasajero1);
 		avion.agregarPasajero(pasajero2);
@@ -242,10 +242,33 @@ public class AeropuertoTest{
 		
 		
 		assertTrue(avion.validarPesoVuelo());
+			
+	}
+	
+	@Test
+	public void queSiElPesoDeLosPasajerosSuperaAlPesoPermitidoRemuevaPasajerosHastaLograrElPesoPermitido() {
 		
+		Hangar hangar = new Hangar(01, "Hangar", 1);
+		Avion avion = new Avion(001, 10, "747", "Boeing", hangar, 30.0, TipoAvion.COMERCIAL);
+		Pasajero pasajero1 = new Pasajero(01, "+123456", 10.0, Cabina.CABINA_PASAJEROS);
+		Pasajero pasajero2 = new Pasajero(02, "+1234563", 10.0, Cabina.CABINA_PASAJEROS);
+		Pasajero pasajero3 = new Pasajero(03, "+1234562", 10.0, Cabina.CABINA_PASAJEROS);
+		Pasajero pasajero4 = new Pasajero(04, "+1234565", 10.0, Cabina.CABINA_PASAJEROS);
+
+		avion.agregarPasajero(pasajero1);
+		avion.agregarPasajero(pasajero2);
+		avion.agregarPasajero(pasajero3);
+		avion.agregarPasajero(pasajero4);
+				
+		assertFalse(avion.validarPesoVuelo());
 		
+		avion.eliminarPasajeroSiSeSuperaElPeso(pasajero4);
+		
+		assertTrue(avion.validarPesoVuelo());
 		
 	}
+	
+	
 	
 	
 }

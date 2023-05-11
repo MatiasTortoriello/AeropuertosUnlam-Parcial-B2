@@ -203,9 +203,9 @@ public class Avion {
 		return listaDeVuelosConLaMismaRuta;
 	}
 
-	public void eliminarPersonalSiSeSuperaElPeso(Personal personal) {
+	public void eliminarPasajeroSiSeSuperaElPeso(Pasajero pasajero) {
 		if(!validarPesoVuelo()) {
-			listaDePersonal.remove(personal);
+			listaDePasajeros.remove(pasajero);
 		}
 		
 	}
