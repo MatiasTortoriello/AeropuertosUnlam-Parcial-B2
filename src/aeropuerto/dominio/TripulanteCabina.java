@@ -1,8 +1,8 @@
 package aeropuerto.dominio;
 
-public class Tcp extends Personal {
+public class TripulanteCabina extends Personal {
 		TipoTripulante tipoTripulante;
-	public Tcp(Integer legajo, String nombre, String apellido, Cabina cabina, Double peso, TipoTripulante tipoTripulante) {
+	public TripulanteCabina(Integer legajo, String nombre, String apellido, Cabina cabina, Double peso, TipoTripulante tipoTripulante) {
 		super(legajo, nombre, apellido, cabina, peso);
 		this.tipoTripulante = tipoTripulante;
 	}

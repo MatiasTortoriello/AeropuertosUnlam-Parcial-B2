@@ -15,7 +15,7 @@ import aeropuerto.dominio.Hangar;
 import aeropuerto.dominio.Pasajero;
 import aeropuerto.dominio.Piloto;
 import aeropuerto.dominio.Ruta;
-import aeropuerto.dominio.Tcp;
+import aeropuerto.dominio.TripulanteCabina;
 import aeropuerto.dominio.TipoAvion;
 import aeropuerto.dominio.TipoDeVuelo;
 import aeropuerto.dominio.TipoTripulante;
@@ -157,16 +157,16 @@ public class AeropuertoTest{
 		TipoTripulante tipoTripulante = TipoTripulante.AZAFATA;
 		
 		Piloto piloto = new Piloto(legajo, nombre, apellido, cabina, peso, cantidadDeHoras);
-		Tcp tcp = new Tcp(legajo2, nombre2, apellido2, cabina2, peso2, tipoTripulante);
+		TripulanteCabina tripulanteCabina = new TripulanteCabina(legajo2, nombre2, apellido2, cabina2, peso2, tipoTripulante);
 		
 		assertEquals(piloto.getCabina(), Cabina.CABINA_PASAJEROS);
-		assertEquals(tcp.getCabina(), Cabina.CABINA_VUELO);
+		assertEquals(tripulanteCabina.getCabina(), Cabina.CABINA_VUELO);
 		
 		piloto.validarCabina();
-		tcp.validarCabina();
+		tripulanteCabina.validarCabina();
 		
 		assertEquals(piloto.getCabina(), Cabina.CABINA_VUELO);
-		assertEquals(tcp.getCabina(), Cabina.CABINA_PASAJEROS);
+		assertEquals(tripulanteCabina.getCabina(), Cabina.CABINA_PASAJEROS);
 		
 	}
 	
@@ -175,7 +175,7 @@ public class AeropuertoTest{
 		
 		
 		Piloto piloto = new Piloto(01, "Pilotin", "Volador", Cabina.CABINA_VUELO, 40.0, 30);
-		Tcp tcp = new Tcp(02, "Comisario", "AmigoDeLaYuta", Cabina.CABINA_PASAJEROS, 30.0, TipoTripulante.COMISARIO_DE_ABORDO);
+		TripulanteCabina tripulanteCabina = new TripulanteCabina(02, "Comisario", "AmigoDeLaYuta", Cabina.CABINA_PASAJEROS, 30.0, TipoTripulante.COMISARIO_DE_ABORDO);
 		Pasajero pasajero1 = new Pasajero(01, "+123456", 10.0, Cabina.CABINA_PASAJEROS);
 		Pasajero pasajero2 = new Pasajero(02, "+1234563", 10.0, Cabina.CABINA_PASAJEROS);
 		Pasajero pasajero3 = new Pasajero(03, "+1234562", 10.0, Cabina.CABINA_PASAJEROS);
