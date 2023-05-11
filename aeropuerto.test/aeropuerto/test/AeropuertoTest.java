@@ -5,11 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import aeropuerto.dominio.Avion;
+import aeropuerto.dominio.Cabina;
 import aeropuerto.dominio.Hangar;
 import aeropuerto.dominio.Pasajero;
 import unlam.edu.ar.dominio.TipoAvion;
 
 public class AeropuertoTest{
+
 
 	@Test
 	public void queSeCreeUnAvionYSeAgregueUnPasajero() {
@@ -29,4 +31,5 @@ public class AeropuertoTest{
 		avion.agregarPasajero(pasajero);
 		assertEquals(avion.getListaDePasajeros().size(), 1);
 	}
+
 }

@@ -2,8 +2,6 @@ package aeropuerto.dominio;
 
 import java.util.Objects;
 
-import aeropuerto.test.Cabina;
-
 public class Pasajero {
 
 	private Integer pasaporte;
