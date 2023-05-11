@@ -90,11 +90,7 @@ public class AeropuertoTest{
 		assertEquals(vuelo.getTipoDeVuelo(), TipoDeVuelo.CABOTAJE);
 	}
 	
-	@Test
-	public void queUnPilotoYUnPersonalEstenEnLaCabinaCorrecta() {
-		Integer legajo = 0001;
-		
-	}
+
 
 	
 	@Test
@@ -114,5 +110,11 @@ public class AeropuertoTest{
 		avion.agregarPasajero(pasajero1);
 		
 		assertEquals(pasajero1.getCabina(), Cabina.CABINA_PASAJEROS);
+	}
+	
+	@Test
+	public void queUnPilotoYUnPersonalEstenEnLaCabinaCorrecta() {
+		Integer legajo = 0001;
+		
 	}
 }
