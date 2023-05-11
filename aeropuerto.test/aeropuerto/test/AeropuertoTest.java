@@ -69,5 +69,11 @@ public class AeropuertoTest{
 		
 		assertEquals(vuelo.getTipoDeVuelo(), TipoDeVuelo.CABOTAJE);
 	}
+	
+	@Test
+	public void queUnPilotoYUnPersonalEstenEnLaCabinaCorrecta() {
+		Integer legajo = 0001;
+		
+	}
 
 }

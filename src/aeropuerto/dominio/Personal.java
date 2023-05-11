@@ -11,11 +11,13 @@ public class Personal{
 	private Double peso;
 	
 	public Personal(Integer legajo, String nombre, String apellido, Cabina cabina, Double peso) {
+		
 		this.legajo = legajo;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.cabina = cabina;
 		this.peso = peso;
+		
 	}
 
 	public Integer getLegajo() {
@@ -75,13 +77,6 @@ public class Personal{
 		return Objects.equals(legajo, other.legajo);
 	}
 
-	public Boolean validarCabina() {
-		if(getCabina() != Cabina.CABINA_VUELO) {
-			setCabina(Cabina.CABINA_VUELO);
-			return true;
-		}
-		return false;
-	}
-	
-	
+
+
 }
