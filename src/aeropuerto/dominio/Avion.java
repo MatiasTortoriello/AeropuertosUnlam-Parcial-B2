@@ -210,4 +210,9 @@ public class Avion {
 		
 	}
 
+	public void agregarPersonal(Personal personal) {
+		this.listaDePersonal.add(personal);
+		
+	}
+
 }
