@@ -182,13 +182,12 @@ public class AeropuertoTest{
 		
 		piloto.validarCabina();
 		
-		
 		assertEquals(piloto.getCabina(), Cabina.CABINA_VUELO);
-		assertNotEquals(piloto.getCabina(), Cabina.CABINA_PASAJEROS);
 	}
 	
+	
 	@Test
-	public void queSiUnPilotoOUnPersonalEstanEnElLaCabinaDePasajerosQueLoCambieALaCabinaDeVuelo() {
+	public void queSiUnPilotoYUnPersonalEstanEnElLaCabinaDePasajerosQueLoCambieALaCabinaDeVuelo() {
 		//Piloto
 		
 		Integer legajo = 0001;
@@ -233,6 +232,18 @@ public class AeropuertoTest{
 
 		Hangar hangar = new Hangar(01, "Hangar", 1);
 		Avion avion = new Avion(001, 10, "747", "Boeing", null, 120.0, TipoAvion.COMERCIAL);
+		
+		avion.agregarPasajero(pasajero1);
+		avion.agregarPasajero(pasajero2);
+		avion.agregarPasajero(pasajero3);
+		avion.agregarPasajero(pasajero4);
+		avion.agregarPersonal(piloto);
+		avion.agregarPersonal(tripulanteCabina);
+		
+		
+		assertTrue(avion.validarPesoVuelo());
+		
+		
 		
 	}
 	
