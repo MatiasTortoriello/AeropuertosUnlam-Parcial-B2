@@ -78,6 +78,14 @@ public class Pasajero {
 		}
 		return false;
 	}
+	
+	public Boolean validarCabina() {
+		if(getCabina() != Cabina.CABINA_PASAJEROS) {
+			setCabina(Cabina.CABINA_PASAJEROS);
+			return true;
+		}
+		return false;
+	}
 
 	
 	
