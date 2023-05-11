@@ -13,6 +13,7 @@ import aeropuerto.dominio.Cabina;
 import aeropuerto.dominio.Ciudad;
 import aeropuerto.dominio.Hangar;
 import aeropuerto.dominio.Pasajero;
+import aeropuerto.dominio.Personal;
 import aeropuerto.dominio.Piloto;
 import aeropuerto.dominio.Ruta;
 import aeropuerto.dominio.TripulanteCabina;
@@ -35,11 +36,10 @@ public class AeropuertoTest{
 		
 		Integer pasaporte = 123123;
 		String numeroPasajero = "+541134236477";
-		Cabina cabina = null;
+		Cabina cabina = Cabina.CABINA_PASAJEROS;
 		Double peso = 40.0;
 		Pasajero pasajero = new Pasajero(pasaporte, numeroPasajero, peso, cabina);
 		
-		pasajero.validarCabina();
 		avion.agregarPasajero(pasajero);
 		
 		assertEquals(avion.getListaDePasajeros().size(), 1);
@@ -64,6 +64,77 @@ public class AeropuertoTest{
 		
 		assertFalse(pasajero.validarPasaporte());
 		assertFalse(pasajero.validarTelefono());
+	}
+	
+	@Test
+	public void queUnPasajeroEsteEnElLaCabinaDePasajeros() {
+		Integer pasaporte = 123123;
+		String numeroPasajero = "+541134236477";
+		Cabina cabina = null;
+		Pasajero pasajero1 = new Pasajero(pasaporte,numeroPasajero,500.0,cabina);
+		
+		Integer codigoAvion = 123;
+		Integer capacidad = 100;
+		String modelo = "123adw";
+		String fabricante = "Casio";
+		Hangar hangar = new Hangar(002, "Hangar Palomar", 5);
+		Avion avion = new Avion(codigoAvion,capacidad,modelo,fabricante, hangar,500.0, TipoAvion.MILITAR);
+		pasajero1.validarCabina();
+		avion.agregarPasajero(pasajero1);
+		
+		
+		assertEquals(pasajero1.getCabina(), Cabina.CABINA_PASAJEROS);
+		assertNotEquals(pasajero1.getCabina(), Cabina.CABINA_VUELO);
+	}
+	
+	@Test
+	public void queUnPasajeroNoEsteEnElLaCabinaDePasajerosYLoCambieDeCabina() {
+		Integer pasaporte = 123123;
+		String numeroPasajero = "+541134236477";
+		Cabina cabina = Cabina.CABINA_VUELO;
+		Pasajero pasajero1 = new Pasajero(pasaporte,numeroPasajero,500.0,cabina);
+		
+		Integer codigoAvion = 123;
+		Integer capacidad = 100;
+		String modelo = "123adw";
+		String fabricante = "Casio";
+		Hangar hangar = new Hangar(002, "Hangar Palomar", 5);
+		Avion avion = new Avion(codigoAvion,capacidad,modelo,fabricante, hangar,500.0, TipoAvion.MILITAR);
+		
+		avion.agregarPasajero(pasajero1);
+		
+		pasajero1.validarCabina();
+		
+		assertEquals(pasajero1.getCabina(), Cabina.CABINA_PASAJEROS);
+	}
+	
+	@Test
+	public void queSeCreeUnAvionYSePuedaAgregarUnPersonalYUnPilotoEnLaMismaLista() {
+		Integer codigoAvion = 123;
+		Integer capacidad = 100;
+		String modelo = "123adw";
+		String fabricante = "Casio";
+		Hangar hangar = new Hangar(002, "Hangar Palomar", 5);
+		Avion avion = new Avion(codigoAvion,capacidad,modelo,fabricante, hangar,500.0, TipoAvion.MILITAR);
+		
+		
+		Integer legajoPersonal = 12;
+		String nombrePersonal = "edu";
+		String apellidoPersonal = "garcia";
+		Cabina cabinaPersonal = Cabina.CABINA_VUELO;
+		Personal personal = new Personal(legajoPersonal, nombrePersonal, apellidoPersonal, cabinaPersonal ,40.0);
+		
+		Integer legajoPiloto = 13;
+		String nombrePiloto = "Ramiro";
+		String apellidoPiloto = "Wase";
+		Cabina areaPiloto = Cabina.CABINA_VUELO;
+		Piloto piloto = new Piloto(legajoPiloto, nombrePiloto, apellidoPiloto, areaPiloto,40.0,13);
+		
+		
+		avion.agregarPersonal(personal);
+		avion.agregarPersonal(piloto);
+		
+		assertEquals(avion.getListaDePersonal().size(), 2);
 	}
 	
 	public void queSiUnVueloTieneDistintosPaisesSeLeAsigneVueloInternacional() {
@@ -96,28 +167,7 @@ public class AeropuertoTest{
 		
 		assertEquals(vuelo.getTipoDeVuelo(), TipoDeVuelo.CABOTAJE);
 	}
-	
-	
-	@Test
-	public void queUnPasajeroEsteEnElLaCabinaDePasajeros() {
-		Integer pasaporte = 123123;
-		String numeroPasajero = "+541134236477";
-		Cabina cabina = null;
-		Pasajero pasajero1 = new Pasajero(pasaporte,numeroPasajero,500.0,cabina);
-		
-		Integer codigoAvion = 123;
-		Integer capacidad = 100;
-		String modelo = "123adw";
-		String fabricante = "Casio";
-		Hangar hangar = new Hangar(002, "Hangar Palomar", 5);
-		Avion avion = new Avion(codigoAvion,capacidad,modelo,fabricante, hangar,500.0, TipoAvion.MILITAR);
-		pasajero1.validarCabina();
-		avion.agregarPasajero(pasajero1);
-		
-		
-		assertEquals(pasajero1.getCabina(), Cabina.CABINA_PASAJEROS);
-		assertNotEquals(pasajero1.getCabina(), Cabina.CABINA_VUELO);
-	}
+
 	
 	@Test
 	public void queUnPilotoYUnPersonalEstenEnLaCabinaCorrecta() {
