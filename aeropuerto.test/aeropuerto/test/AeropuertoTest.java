@@ -108,6 +108,8 @@ public class AeropuertoTest{
 		assertEquals(pasajero1.getCabina(), Cabina.CABINA_PASAJEROS);
 	}
 	
+	
+	
 	@Test
 	public void queSeCreeUnAvionYSePuedaAgregarUnPersonalYUnPilotoEnLaMismaLista() {
 		Integer codigoAvion = 123;
@@ -135,6 +137,54 @@ public class AeropuertoTest{
 		avion.agregarPersonal(piloto);
 		
 		assertEquals(avion.getListaDePersonal().size(), 2);
+	}
+	
+	@Test
+	public void queSeCreeUnAvionYNoSePuedaAgregarUnPasajeroRepetidoNiPersonalRepetido() {
+		Integer codigoAvion = 123;
+		Integer capacidad = 100;
+		String modelo = "123adw";
+		String fabricante = "Casio";
+		Hangar hangar = new Hangar(002, "Hangar Palomar", 5);
+		Avion avion = new Avion(codigoAvion,capacidad,modelo,fabricante, hangar,500.0, TipoAvion.MILITAR);
+		
+		Integer pasaporte = 123123;
+		String numeroPasajero = "+541134236477";
+		Pasajero pasajero = new Pasajero(pasaporte,numeroPasajero,40.0,Cabina.CABINA_PASAJEROS);
+		Integer pasaporte2 = 123123;
+		String numeroPasajero2 = "+541134236477";
+		Pasajero pasajero2 = new Pasajero(pasaporte2,numeroPasajero2,40.0,Cabina.CABINA_PASAJEROS);
+		
+		Integer legajo = 12;
+		String nombre = "edu";
+		String apellido = "garcia";
+		Cabina cabina = Cabina.CABINA_VUELO;
+		
+		Personal personal = new Personal(legajo, nombre, apellido, cabina,40.0);
+		Personal personal2 = new Personal(legajo, nombre, apellido, cabina,40.0);
+		
+		
+		avion.agregarPasajero(pasajero);
+		avion.agregarPasajero(pasajero2);
+		avion.agregarPersonal(personal);
+		avion.agregarPersonal(personal2);
+		
+		assertEquals(avion.getListaDePasajeros().size(), 1);
+		assertEquals(avion.getListaDePersonal().size(), 1);
+	}
+	
+	@Test
+	public void queElVueloTengaUnaFechaValida() {
+		Integer nroVuelo = 001;
+		LocalTime hora = LocalTime.of(23, 50);
+		Ciudad ciudadInicio = new Ciudad(01, "Lima", "Peru");
+		Ciudad ciudadDestino = new Ciudad(02, "Buenos Aires", "Argentina");
+		LocalDate fecha = LocalDate.of(2024, 5, 10);
+		
+		Ruta ruta = new Ruta(3,ciudadInicio, ciudadDestino);
+		Vuelo vuelo = new Vuelo(nroVuelo,ruta,hora,fecha);
+		
+		assertTrue(vuelo.validarFecha());
 	}
 	
 	public void queSiUnVueloTieneDistintosPaisesSeLeAsigneVueloInternacional() {
