@@ -2,8 +2,6 @@ package aeropuerto.dominio;
 
 import java.util.HashSet;
 
-import unlam.edu.ar.dominio.Avion;
-
 public class Hangar {
 
 	private Integer codHangar;
@@ -49,17 +47,32 @@ public class Hangar {
 		this.listaDeAviones = listaDeAviones;
 	}
 	
-	public void agregarAvion(Avion avion) {
-		listaDeAviones.add(avion);
+	public void agregarAvion(Avion avion1) {
+		listaDeAviones.add(avion1);
 	}
 	
 	
 	
-	/*public void eliminarAvionSiNoHayCapacidad(Avion avion) {
-		if(!)
-		
-		}*/
+	public void eliminarAvionSiNoHayCapacidad(Avion avion) {
+		if(!calcularCapacidad()) {
+			listaDeAviones.remove(avion);
+		}	
+	}
 	
+	public Boolean calcularCapacidad() {
+		if(listaDeAviones.size() <= this.capacidad) {
+			return true;
+		}
+		return false;
+	}
+	
+	public Avion buscarAvion(Integer codAvion) {
+		for (Avion avion : listaDeAviones) {
+			if(avion.getCodigoAvion() == codAvion) {
+				return avion;
+			}
+		}
+		return null;
+	}
 
-	
 }

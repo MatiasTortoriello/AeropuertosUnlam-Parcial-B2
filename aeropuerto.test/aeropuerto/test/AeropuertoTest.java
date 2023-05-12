@@ -49,10 +49,43 @@ public class AeropuertoTest{
 	public void queSePuedaCrearUnHangarYNoSePuedaAgregarAvionesRepetidos() {
 		Hangar hangar = new Hangar(0524, "Hangar Juan Domingo Perón", 5);
 		
-		Avion avion1 = new Avion(01, 10, "747", "Boeing", hangar, 10.0, TipoAvion.COMERCIAL);
-		Avion avion2 = new Avion(01, 10, "747", "Boeing", hangar, 10.0, TipoAvion.COMERCIAL);
+		Avion avion1 = new Avion(01, 10, "747", "Boeing", hangar, 60.0, TipoAvion.COMERCIAL);
+		Avion avion2 = new Avion(01, 30, "F-51", "Mustang", hangar, 26.0, TipoAvion.MILITAR);
+		//Los aviones poseen el mismo código (HashCode) y son agregados dentro de un HashSet.
+		hangar.agregarAvion(avion1);
+		hangar.agregarAvion(avion2);
 		
-		//avion.
+		assertEquals(1, hangar.getListaDeAviones().size());
+	}
+	
+	@Test
+	public void queNoSeExcedaLaCapacidadDeUnHangar() {
+Hangar hangar = new Hangar(002, "Hangar Palomar", 2);
+		
+		Integer codigoAvion = 122;
+		Integer capacidad = 3;
+		String modelo = "123adw";
+		String fabricante = "Casio";
+		Avion avion = new Avion(codigoAvion,capacidad,modelo,fabricante, hangar,500.0, TipoAvion.MILITAR);
+		
+		Integer codigoAvion2 = 123;
+		Integer capacidad2 = 3;
+		String modelo2 = "123adw";
+		String fabricante2 = "Casio";
+		Avion avion2 = new Avion(codigoAvion2,capacidad2,modelo2,fabricante2, hangar,500.0, TipoAvion.MILITAR);
+		
+		Integer codigoAvion3 = 124;
+		Integer capacidad3 = 3;
+		String modelo3 = "123adw";
+		String fabricante3 = "Casio";
+		Avion avion3 = new Avion(codigoAvion3,capacidad3,modelo3,fabricante3, hangar,500.0, TipoAvion.MILITAR);
+		
+		
+		hangar.agregarAvion(avion);
+		hangar.agregarAvion(avion2);
+		hangar.agregarAvion(avion3);
+		
+		assertFalse(hangar.calcularCapacidad());
 	}
 	
 	@Test
