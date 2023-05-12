@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -87,6 +88,8 @@ Hangar hangar = new Hangar(002, "Hangar Palomar", 2);
 		
 		assertFalse(hangar.calcularCapacidad());
 	}
+	
+	
 	
 	@Test
 
@@ -361,9 +364,100 @@ Hangar hangar = new Hangar(002, "Hangar Palomar", 2);
 		
 	}
 	
+	@Test
+	public void queSiSeExcedaLaCapacidadDeUnHangarElimineUnAvion() {
+		Hangar hangar = new Hangar(002, "Hangar Palomar", 2);
+		
+		Integer codigoAvion = 122;
+		Integer capacidad = 3;
+		String modelo = "123adw";
+		String fabricante = "Casio";
+		Avion avion = new Avion(codigoAvion,capacidad,modelo,fabricante, hangar,500.0, TipoAvion.MILITAR);
+		
+		Integer codigoAvion2 = 123;
+		Integer capacidad2 = 3;
+		String modelo2 = "123adw";
+		String fabricante2 = "Casio";
+		Avion avion2 = new Avion(codigoAvion2,capacidad2,modelo2,fabricante2, hangar,500.0, TipoAvion.MILITAR);
+		
+		Integer codigoAvion3 = 124;
+		Integer capacidad3 = 3;
+		String modelo3 = "123adw";
+		String fabricante3 = "Casio";
+		Avion avion3 = new Avion(codigoAvion3,capacidad3,modelo3,fabricante3, hangar,500.0, TipoAvion.MILITAR);
+		
+		
+		hangar.agregarAvion(avion);
+		hangar.agregarAvion(avion2);
+		hangar.agregarAvion(avion3);
+		
+		assertFalse(hangar.calcularCapacidad());
+		hangar.eliminarAvionSiNoHayCapacidad(avion);
+		assertTrue(hangar.calcularCapacidad());
+	}
+	
+	@Test
+	public void queSePuedaBuscarUnAvionEnElHangar() {
+		Hangar hangar = new Hangar(002, "Hangar Palomar", 2);
+		
+		Integer codigoAvion = 122;
+		Integer capacidad = 3;
+		String modelo = "123adw";
+		String fabricante = "Casio";
+		Avion avion = new Avion(codigoAvion,capacidad,modelo,fabricante, hangar,500.0, TipoAvion.MILITAR);
+		
+		Integer codigoAvion2 = 123;
+		Integer capacidad2 = 3;
+		String modelo2 = "123adw";
+		String fabricante2 = "Casio";
+		Avion avion2 = new Avion(codigoAvion2,capacidad2,modelo2,fabricante2, hangar,500.0, TipoAvion.MILITAR);
+		
+		Integer codigoAvion3 = 124;
+		Integer capacidad3 = 3;
+		String modelo3 = "123adw";
+		String fabricante3 = "Casio";
+		Avion avion3 = new Avion(codigoAvion3,capacidad3,modelo3,fabricante3, hangar,500.0, TipoAvion.MILITAR);
+		
+		
+		hangar.agregarAvion(avion);
+		hangar.agregarAvion(avion2);
+		hangar.agregarAvion(avion3);
+		
+		assertEquals(hangar.buscarAvion(codigoAvion), avion);
+	}
+	
+	@Test
+	public void queSePuedaBuscarVuelosPorCodigoDeRuta() {
+		Integer nroVuelo = 001;
+		LocalTime hora = LocalTime.of(04, 00);
+		Ciudad ciudadInicio = new Ciudad(01, "Lima", "Peru");
+		Ciudad ciudadDestino = new Ciudad(02, "Buenos Aires", "Argentina");
+		LocalDate fecha = LocalDate.of(2025, 6, 17);
+		Ruta ruta = new Ruta(3,ciudadInicio,ciudadDestino);
+		Vuelo vuelo = new Vuelo(nroVuelo,ruta,hora,fecha);
+		
+		Integer nroVuelo2 = 002;
+		LocalTime hora2 = LocalTime.of(05, 00);
+		Ciudad ciudadInicio2 = new Ciudad(01, "Lima", "Peru");
+		Ciudad ciudadDestino2 = new Ciudad(02, "Buenos Aires", "Argentina");
+		LocalDate fecha2 = LocalDate.of(2025, 6, 17);
+		Ruta ruta2 = new Ruta(3,ciudadInicio2,ciudadDestino2);
+		Vuelo vuelo2 = new Vuelo(nroVuelo2,ruta2,hora2,fecha2);
+		
+	
+		Hangar hangar = new Hangar(002, "Hangar Palomar", 2);
+		Integer codigoAvion = 122;
+		Integer capacidad = 3;
+		String modelo = "123adw";
+		String fabricante = "Casio";
+		Avion avion = new Avion(codigoAvion,capacidad,modelo,fabricante, hangar,500.0, TipoAvion.MILITAR);
+		
+		avion.agregarVuelo(vuelo);
+		avion.agregarVuelo(vuelo2);
+		
+		Integer codRuta = ruta.getCodRuta();
+		ArrayList<Vuelo> listaDeVuelos = avion.buscarVueloPorCodigoDeRuta(codRuta);
+		assertTrue(listaDeVuelos.contains(vuelo) && listaDeVuelos.contains(vuelo2));
+	}
 
-	
-	
-	
-	
 }
