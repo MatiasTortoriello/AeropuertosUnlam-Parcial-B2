@@ -46,6 +46,16 @@ public class AeropuertoTest{
 	}
 	
 	@Test
+	public void queSePuedaCrearUnHangarYNoSePuedaAgregarAvionesRepetidos() {
+		Hangar hangar = new Hangar(0524, "Hangar Juan Domingo Perón", 5);
+		
+		Avion avion1 = new Avion(01, 10, "747", "Boeing", hangar, 10.0, TipoAvion.COMERCIAL);
+		Avion avion2 = new Avion(01, 10, "747", "Boeing", hangar, 10.0, TipoAvion.COMERCIAL);
+		
+		avion.
+	}
+	
+	@Test
 
 	public void queElPasajeroTengaTelefonoYPasaporteValido() {
 		Integer pasaporte = 123123;
@@ -267,6 +277,8 @@ public class AeropuertoTest{
 		assertTrue(avion.validarPesoVuelo());
 		
 	}
+	
+
 	
 	
 	
