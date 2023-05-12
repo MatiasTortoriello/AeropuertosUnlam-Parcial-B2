@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 
-
-
 public class Avion {
 	
 	private Integer codigoAvion;

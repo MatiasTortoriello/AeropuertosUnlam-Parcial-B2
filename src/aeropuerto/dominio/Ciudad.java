@@ -1,7 +1,5 @@
 package aeropuerto.dominio;
 
-
-
 public class Ciudad {
 	private Integer codCiudad;
 	private String nombre;
@@ -36,8 +34,4 @@ public class Ciudad {
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
-
-
-	
-	
 }

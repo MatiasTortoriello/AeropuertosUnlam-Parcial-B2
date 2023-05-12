@@ -459,5 +459,4 @@ Hangar hangar = new Hangar(002, "Hangar Palomar", 2);
 		ArrayList<Vuelo> listaDeVuelos = avion.buscarVueloPorCodigoDeRuta(codRuta);
 		assertTrue(listaDeVuelos.contains(vuelo) && listaDeVuelos.contains(vuelo2));
 	}
-
 }

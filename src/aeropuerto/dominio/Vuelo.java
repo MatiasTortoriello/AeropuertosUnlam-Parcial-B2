@@ -6,7 +6,6 @@ import java.util.Objects;
 
 public class Vuelo {
 
-	
 	private Integer nroVuelo;
 	private Ruta rutaDeVuelo;
 	private LocalTime hora;

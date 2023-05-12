@@ -77,6 +77,4 @@ public class Personal{
 		return Objects.equals(legajo, other.legajo);
 	}
 
-
-
 }

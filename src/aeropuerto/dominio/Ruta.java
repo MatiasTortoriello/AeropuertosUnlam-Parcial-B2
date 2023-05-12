@@ -6,7 +6,6 @@ public class Ruta {
 	private Ciudad ciudadDestino;
 	private Ciudad ciudadInicio;
 
-	
 	public Ruta(Integer codRuta,Ciudad ciudadDestino, Ciudad ciudadInicio) {
 		this.codRuta = codRuta;
 		this.ciudadDestino = ciudadDestino;
@@ -50,7 +49,4 @@ public class Ruta {
 		}
 		return false;
 	}
-
-	
-	
 }

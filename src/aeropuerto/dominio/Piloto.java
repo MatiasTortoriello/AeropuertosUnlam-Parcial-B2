@@ -5,7 +5,6 @@ public class Piloto extends Personal {
 	private Integer cantidadHoras;
 	private TipoAvion tipoAvion;
 	
-	
 	public Piloto(Integer legajo, String nombre, String apellido, Cabina cabina, Double peso, Integer cantidadHoras) {
 		super(legajo, nombre, apellido, cabina, peso);
 		this.cantidadHoras = cantidadHoras;

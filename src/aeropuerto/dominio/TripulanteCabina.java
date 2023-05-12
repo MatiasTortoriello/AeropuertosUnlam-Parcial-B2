@@ -24,4 +24,5 @@ public class TripulanteCabina extends Personal {
 		return false;
 	}
 	
+	
 }
