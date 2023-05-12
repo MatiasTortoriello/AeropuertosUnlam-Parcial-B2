@@ -15,7 +15,7 @@ public class Avion {
 	private Hangar hangar;
 	private Double pesoMaximo;
 	private TipoAvion tipoAvion;
-	private HashSet<Vuelo> listaDeVuelo = new HashSet<Vuelo>();
+	private HashSet<Vuelo> listaDeVuelos = new HashSet<Vuelo>();
 	private HashSet<Pasajero> listaDePasajeros = new HashSet<Pasajero>();
 	private HashSet<Personal> listaDePersonal= new HashSet<Personal>();
 	
@@ -28,7 +28,7 @@ public class Avion {
 		this.hangar = hangar;
 		this.pesoMaximo = pesoMaximo;
 		this.tipoAvion = tipoAvion;
-		this.listaDeVuelo = new HashSet<Vuelo>();
+		this.listaDeVuelos = new HashSet<Vuelo>();
 		this.listaDePasajeros = new HashSet<Pasajero>();
 		this.listaDePersonal= new HashSet<Personal>();
 	}
@@ -90,11 +90,11 @@ public class Avion {
 	}
 
 	public HashSet<Vuelo> getListaDeVuelo() {
-		return listaDeVuelo;
+		return listaDeVuelos;
 	}
 
 	public void setListaDeVuelo(HashSet<Vuelo> listaDeVuelo) {
-		this.listaDeVuelo = listaDeVuelo;
+		this.listaDeVuelos = listaDeVuelo;
 	}
 
 	public HashSet<Pasajero> getListaDePasajeros() {
@@ -192,10 +192,14 @@ public class Avion {
 		}
 		return null;
 	}
+	
+	public void agregarVuelo(Vuelo vuelo) {
+		listaDeVuelos.add(vuelo);
+	}
 
 	public ArrayList<Vuelo> buscarVueloPorCodigoDeRuta(Integer codRuta) {
 		ArrayList<Vuelo> listaDeVuelosConLaMismaRuta = new ArrayList<Vuelo>();
-		for (Vuelo vuelo : listaDeVuelo) {
+		for (Vuelo vuelo : listaDeVuelos) {
 			if(vuelo.getRutaDeVuelo().getCodRuta() == codRuta) {
 				listaDeVuelosConLaMismaRuta.add(vuelo);
 			}
