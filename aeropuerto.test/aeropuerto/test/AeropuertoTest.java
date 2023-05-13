@@ -379,6 +379,27 @@ Hangar hangar = new Hangar(002, "Hangar Palomar", 2);
 	}
 	
 	@Test
+	public void queUnPilotoConMasDe20HorasPuedaManejarUnAvionMilitar() {
+		Integer legajo = 12;
+		String nombre = "edu";
+		String apellido = "garcia";
+		Cabina area = Cabina.CABINA_VUELO;
+		Integer cantidadHoras = 21;
+		Piloto piloto = new Piloto(legajo,nombre,apellido,area,40.0,cantidadHoras);
+		
+		Integer codigoAvion = 123;
+		Integer capacidad = 3;
+		String modelo = "123adw";
+		String fabricante = "Casio";
+		Hangar hangar = new Hangar(002, "Hangar Palomar", 5);
+		Avion avion = new Avion(codigoAvion,capacidad,modelo,fabricante, hangar,500.0, TipoAvion.MILITAR);
+		
+		avion.validarPiloto(piloto);
+		
+		assertEquals(piloto.getTipoAvion(), TipoAvion.MILITAR);
+	}
+	
+	@Test
 	public void queUnPilotoYUnPersonalEstenEnLaCabinaCorrecta() {
 		Integer legajo = 0001;
 		String nombre= "Pilotencio";
