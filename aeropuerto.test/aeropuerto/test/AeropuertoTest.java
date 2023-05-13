@@ -300,6 +300,37 @@ Hangar hangar = new Hangar(002, "Hangar Palomar", 2);
 	}
 	
 	@Test
+	public void queSeCreeUnAvionYNoSePuedanAgregarVuelosRepetidos() {
+		Integer codigoAvion = 123;
+		Integer capacidad = 100;
+		String modelo = "123adw";
+		String fabricante = "Casio";
+		Hangar hangar = new Hangar(002, "Hangar Palomar", 5);
+		Avion avion = new Avion(codigoAvion,capacidad,modelo,fabricante, hangar,500.0, TipoAvion.MILITAR);
+		
+		Integer nroVuelo = 001;
+		LocalTime hora = LocalTime.of(23, 50);
+		Ciudad ciudadInicio = new Ciudad(01, "Lima", "Peru");
+		Ciudad ciudadDestino = new Ciudad(02, "Buenos Aires", "Argentina");
+		LocalDate fecha = LocalDate.of(2023, 6, 17);
+		Ruta ruta = new Ruta(3,ciudadInicio,ciudadDestino);
+		Vuelo vuelo = new Vuelo(nroVuelo,ruta,hora,fecha);
+		
+		Integer nroVuelo2 = 001;
+		LocalTime hora2 = LocalTime.of(23, 50);
+		Ciudad ciudadInicio2 = new Ciudad(01, "Lima", "Peru");
+		Ciudad ciudadDestino2 = new Ciudad(02, "Buenos Aires", "Argentina");
+		LocalDate fecha2 = LocalDate.of(2023, 6, 17);
+		Ruta ruta2 = new Ruta(3,ciudadInicio2,ciudadDestino2);
+		Vuelo vuelo2 = new Vuelo(nroVuelo2,ruta2,hora2,fecha2);
+		
+		avion.agregarVuelo(vuelo);
+		avion.agregarVuelo(vuelo2);
+		
+		assertEquals(avion.getListaDeVuelo().size(), 1);
+	}
+	
+	@Test
 	public void queUnPilotoYUnPersonalEstenEnLaCabinaCorrecta() {
 		Integer legajo = 0001;
 		String nombre= "Pilotencio";
