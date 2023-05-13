@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import aeropuerto.dominio.Vuelo;
+import unlam.edu.ar.dominio.AreaAsignada;
 import aeropuerto.dominio.Avion;
 import aeropuerto.dominio.Cabina;
 import aeropuerto.dominio.Ciudad;
@@ -274,6 +275,29 @@ Hangar hangar = new Hangar(002, "Hangar Palomar", 2);
 		assertFalse(ruta.validarCodigoCiudad());
 	}
 
+	@Test
+	public void queSePuedaBuscarUnPasajeroEnElAvionATravesDeSuPasaporte() {
+		Integer codigoAvion = 123;
+		Integer capacidad = 100;
+		String modelo = "123adw";
+		String fabricante = "Casio";
+		Hangar hangar = new Hangar(002, "Hangar Palomar", 5);
+		Avion avion = new Avion(codigoAvion,capacidad,modelo,fabricante, hangar,500.0, TipoAvion.MILITAR);
+	
+		
+		Integer pasaporte = 123123;
+		String numeroPasajero = "+541134236477";
+		Pasajero pasajero1 = new Pasajero(pasaporte,numeroPasajero,500.0,Cabina.CABINA_PASAJEROS);
+		
+		Integer pasaporte2 = 123124;
+		String numeroPasajero2 = "+541134236477";
+		Pasajero pasajero2 = new Pasajero(pasaporte2,numeroPasajero2,40.0,Cabina.CABINA_PASAJEROS);
+		
+		avion.agregarPasajero(pasajero1);
+		avion.agregarPasajero(pasajero2);
+		
+		assertEquals(avion.buscarPasajero(pasaporte), pasajero1);
+	}
 	
 	@Test
 	public void queUnPilotoYUnPersonalEstenEnLaCabinaCorrecta() {
