@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import aeropuerto.dominio.Vuelo;
-import unlam.edu.ar.dominio.AreaAsignada;
 import aeropuerto.dominio.Avion;
 import aeropuerto.dominio.Cabina;
 import aeropuerto.dominio.Ciudad;
