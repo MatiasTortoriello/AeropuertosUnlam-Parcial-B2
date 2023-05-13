@@ -1,9 +1,7 @@
-<h1 align="center"># Aeropuerto</h1>
+<h1 align="center">Aeropuerto</h1>
+<h2 align="center">PARCIAL PROGRAMACION BASICA II TM</h2>
 
-
-
-## PARCIAL PROGRAMACION BASICA II TM
-### Herlein, Gonzalo. Tortoriello, Matías. Gauna, Gonzalo
+<h3 align="center"> Herlein, Gonzalo. Tortoriello, Matías. Gauna, Gonzalo</h3>
 
 ## Ejercicio
 Nos contratan de una aerolínea para crear un software que administre la información de los pasajeros, vuelos, aviones y personal. 
