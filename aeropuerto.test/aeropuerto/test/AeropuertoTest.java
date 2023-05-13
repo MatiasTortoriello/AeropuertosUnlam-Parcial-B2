@@ -331,6 +331,29 @@ Hangar hangar = new Hangar(002, "Hangar Palomar", 2);
 	}
 	
 	@Test
+	public void queHayaCapacidadSuficienteEnElAvion() {
+		Integer codigoAvion = 123;
+		Integer capacidad = 3;
+		String modelo = "123adw";
+		String fabricante = "Casio";
+		Hangar hangar = new Hangar(002, "Hangar Palomar", 5);
+		Avion avion = new Avion(codigoAvion,capacidad,modelo,fabricante, hangar,500.0, TipoAvion.MILITAR);
+		
+		Integer pasaporte = 123123;
+		String numeroPasajero = "+541134236477";
+		Pasajero pasajero = new Pasajero(pasaporte,numeroPasajero,40.0,Cabina.CABINA_PASAJEROS);
+		
+		Integer pasaporte2 = 123124;
+		String numeroPasajero2 = "+541134236477";
+		Pasajero pasajero2 = new Pasajero(pasaporte2,numeroPasajero2,40.0,Cabina.CABINA_PASAJEROS);
+		
+		avion.agregarPasajero(pasajero);
+		avion.agregarPasajero(pasajero2);
+		
+		assertTrue(avion.hayCapacidad());
+	}
+	
+	@Test
 	public void queUnPilotoYUnPersonalEstenEnLaCabinaCorrecta() {
 		Integer legajo = 0001;
 		String nombre= "Pilotencio";
