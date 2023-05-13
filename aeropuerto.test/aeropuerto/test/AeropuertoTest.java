@@ -263,6 +263,16 @@ Hangar hangar = new Hangar(002, "Hangar Palomar", 2);
 		
 		assertEquals(vuelo.getTipoDeVuelo(), TipoDeVuelo.CABOTAJE);
 	}
+	
+	@Test
+	public void queUnaRutaNoTengaMismoCodigoDeCiudadDeInicioQueDeDestino() {
+		Ciudad ciudadInicio = new Ciudad(02, "Lima", "Peru");
+		Ciudad ciudadDestino = new Ciudad(02, "Buenos Aires", "Argentina");
+		
+		Ruta ruta = new Ruta(3,ciudadInicio, ciudadDestino);
+	
+		assertFalse(ruta.validarCodigoCiudad());
+	}
 
 	
 	@Test
